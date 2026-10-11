@@ -1,0 +1,28 @@
+# ==============================================================================
+# Proxmox Namunaviy Sozlamalar Fayli (terraform.tfvars.example)
+# ==============================================================================
+# Ushbu fayldan nusxa olib, "terraform.tfvars" deb nomlang va
+# o'z Proxmox serveringiz ma'lumotlarini kiriting!
+# ==============================================================================
+
+# Proxmox serveringizning IP manzili:
+proxmox_api_url          = "https://192.168.1.100:8006/api2/json"
+
+# Proxmoxda yaratgan Token ma'lumotlaringiz:
+proxmox_api_token_id     = "terraform-user@pve!tf-token"
+proxmox_api_token_secret = "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+
+# Node va Shablon nomi:
+target_node              = "pve"
+template_name            = "ubuntu-2204-cloudinit-template"
+
+# VM parametrlari:
+vm_name                  = "devops-server-01"
+vm_cores                 = 2
+vm_memory                = 2048
+vm_disk_size             = "20G"
+storage_pool             = "local-lvm"
+
+# SSH orqali kirish uchun o'zingizning ochiq kalitingiz (id_rsa.pub yoki id_ed25519.pub):
+ssh_public_key           = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAI... sizning_emailingiz@misol.uz"
+ci_user                  = "ubuntu"
