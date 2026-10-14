@@ -42,7 +42,7 @@ resource "proxmox_vm_qemu" "server" {
   network {
     id     = 0
     model  = "virtio"
-    bridge = "vmbr0"
+    bridge = "wan_br"
   }
 
   # Cloud-Init sozlamalari (OS sozlash)

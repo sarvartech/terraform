@@ -23,7 +23,7 @@ variable "proxmox_api_token_secret" {
 variable "target_node" {
   description = "VM yaratilishi kerak bo'lgan Proxmox Node nomi"
   type        = string
-  default     = "pve"
+  default     = "Winadmin"
 }
 
 # --- Virtual Mashina Sozlamalari ---

@@ -78,6 +78,11 @@ Terraform orqali virtual mashina yaratishda noldan ISO o'rnatish (next, next bos
    
 Natijada siz kodni ishga tushirganingizdan 30 soniya o'tib, to'liq tayyor serverga SSH orqali parolsiz kira olasiz!
 
+### 📖 Alohida Chuqurlashtirilgan Nazariy Ma'ruzalar:
+Ushbu mavzu bo'yicha har bir buyruq va texnologiyaning chuqur tahlili quyidagi maxsus ma'ruzalarda yoritilgan:
+- 📄 **[Lecture 03-A: Minimal Cloud Image Template Nazariyasi](./01-cloud-init-minimal-template.md)** — Rasmiy Canonical tasviri, SCSI/VirtIO drayverlari, Serial konsol va buyruqlar tahlili.
+- 📄 **[Lecture 03-B: Custom Golden Image & virt-customize Nazariyasi](./02-cloud-init-custom-template.md)** — Offline disk tahrirlash, QEMU Guest Agent integratsiyasi, Toshkent vaqti va buyruqlar tahlili.
+
 ---
 
 ## 🧱 5-Qism: Proxmox Resurslarining Turlari
@@ -95,4 +100,8 @@ Terraform orqali Proxmoxda quyidagi resurslarni boshqarish mumkin:
 ## 📌 Xulosa
 Proxmox + Terraform integratsiyasi — har bir DevOps muhandisiga o'z kompyuterida yoki ofis serverida real korporativ darajadagi avtomatlashtirishni his qilish imkonini beradi.
 
-Endi buni amalda sozlash uchun **[Lab 03 (Amaliy Mashg'ulot)](../lab/README.md)**ga o'tamiz!
+Endi buni amalda sozlash uchun quyidagi amaliy laboratoriyalarga o'tamiz:
+1. 🧪 **[Lab 03-A: Minimal Template Yaratish (ID: 9000)](../lab/01-cloud-init-minimal-template.md)**
+2. 🧪 **[Lab 03-B: Custom Template Yaratish (ID: 9100)](../lab/02-cloud-init-custom-template.md)**
+3. 🚀 **[Lab 03: Terraform orqali VM Ishga Tushirish](../lab/README.md)**
+

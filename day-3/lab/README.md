@@ -25,29 +25,16 @@ Terraform Proxmox bilan ishlashi uchun bizga 2 ta narsa kerak:
 ---
 
 ### B) Proxmoxda Cloud-Init Shablonini (Template) tayyorlash:
-Agar sizda hali tayyor Cloud-Init shabloni bo'lmasa, Proxmox konsolida (Shell) quyidagi buyruqlarni bir marta bajaring:
+Terraform VM yaratishdan oldin Proxmoxda tayanch shablon bo'lishi shart. Siz quyidagi 2 ta to'liq qo'llanmadan birini tanlab shablon yaratishingiz mumkin:
 
-```bash
-# 1. Ubuntu 22.04 Cloud rasmini yuklab olish
-wget https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img
+| Qo'llanma | Usul | VM ID | Xususiyati | Havola |
+| :--- | :--- | :---: | :--- | :---: |
+| **Lab 03-A** | **Minimal Rasmiy Tasvir** | `9000` | Sof Canonical Ubuntu 24.04 tasviri, qo'shimcha paketlarsiz | 📖 **[Lab 03-A Qo'llanmasi](./01-cloud-init-minimal-template.md)** |
+| **Lab 03-B** | **Custom Template (`virt-customize`)** | `9100` | **Tavsiya etiladi!** `qemu-guest-agent`, `curl`, `htop` va Toshkent vaqti kiritilgan | 🚀 **[Lab 03-B Qo'llanmasi](./02-cloud-init-custom-template.md)** |
 
-# 2. Yangi VM yaratish (ID: 9000)
-qm create 9000 --name "ubuntu-2204-cloudinit-template" --memory 2048 --cores 2 --net0 virtio,bridge=vmbr0
+> [!TIP]
+> Agar shoshilinch bo'lsa yoki eng barqaror natija kerak bo'lsa, **[Lab 03-B (Custom Template)](./02-cloud-init-custom-template.md)** orqali 9100-shablonni yaratishni tavsiya qilamiz. U orqali yaratilgan VMlar Terraform bilan 100% integratsiyada ishlaydi.
 
-# 3. Diskni Proxmox storage'iga import qilish
-qm importdisk 9000 jammy-server-cloudimg-amd64.img local-lvm
-
-# 4. Diskni SCSI qilib ulash va Cloud-Init drayverini qo'shish
-qm set 9000 --scsihw virtio-scsi-pci --scsi0 local-lvm:vm-9000-disk-0
-qm set 9000 --ide2 local-lvm:cloudinit
-qm set 9000 --boot c --bootdisk scsi0
-qm set 9000 --serial0 socket --vga serial0
-qm set 9000 --agent enabled=1
-
-# 5. Shablonga (Template) aylantirish
-qm template 9000
-```
-*(Endi sizda `ubuntu-2204-cloudinit-template` nomli tayyor shablon mavjud!)*
 
 ---
 
