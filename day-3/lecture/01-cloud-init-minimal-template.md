@@ -91,7 +91,8 @@ Quyidagi jadvalda Minimal Template (ID: 9000) yaratishda ishlatiladigan har bir 
 | **8** | `qm set 9000 --boot c --bootdisk scsi0` | VM birinchi bo'lib qaysi diskdan yuklanishini belgilash | Tizim yuklanganda tarmoqdan yoki CD'dan emas, to'g'ridan-to'g'ri `scsi0` asosiy diskidan yuklanishini ta'minlaydi. |
 | **9** | `qm set 9000 --serial0 socket --vga serial0` | Tizimga seriyali konsolni ulash | Veb-interfeysdagi xterm.js terminali orqali tezkor va qulay matnli konsolni ishga tushiradi. |
 | **10**| `qm set 9000 --agent enabled=1` | QEMU Guest Agent bilan aloqa kanalini ochish | Proxmox va Terraform VM'ning ichki tarmoq IP manzillarini aniqlashi uchun soketni yoqadi. |
-| **11**| `qm template 9000` | Oddiy VMni o'zgarmas Shablonga (Template) aylantirish | VMni yoqib bo'lmaydigan, faqat nusxa (klon) olinadigan andozaga aylantiradi. |
+| **11**| `qm set 9000 --ciuser "sarvar" --cipassword "..." --sshkeys /root/.ssh/id_rsa.pub --ipconfig0 ip=dhcp` | Cloud-Init orqali login, parol, SSH kalit va tarmoqni sozlash | VM ishga tushganda unga kirish uchun maxsus foydalanuvchi hisobi, parol, SSH ochiq kaliti va DHCP tarmog'ini avtomatik sozlaydi. |
+| **12**| `qm template 9000` | Oddiy VMni o'zgarmas Shablonga (Template) aylantirish | VMni yoqib bo'lmaydigan, faqat nusxa (klon) olinadigan andozaga aylantiradi. |
 
 ---
 
@@ -105,6 +106,12 @@ Keling, `qm create` va `qm set` buyruqlarining parametrlarini tahlil qilamiz:
 - `--cores 2`: Virtual protsessor yadrolari soni (2 yadro).
 - `--cpu host`: Server protsessorining barcha ko'rsatmalarini to'liq uzatish.
 - `--net0 virtio,bridge=vmbr0`: Birinchi tarmoq interfeysi (`net0`). `virtio` — Linux uchun eng tezkor paravirtual drayver. `vmbr0` — Proxmoxning standart Linux Bridge virtual tarmog'i.
+
+### `qm set 9000` (Cloud-Init sozlamalari)
+- `--ciuser "sarvar"`: Yangi yaratiladigan standart tizim foydalanuvchisi.
+- `--cipassword "..."`: Foydalanuvchi paroli (Proxmox uni xavfsiz xeshlab saqlaydi).
+- `--sshkeys /root/.ssh/id_rsa.pub`: VM ichidagi `~/.ssh/authorized_keys` ga qo'shiladigan SSH ochiq kaliti.
+- `--ipconfig0 ip=dhcp`: Birinchi tarmoq interfeysiga DHCP orqali avtomatik IP olish buyrug'i.
 
 ---
 

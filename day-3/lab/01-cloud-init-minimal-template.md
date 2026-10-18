@@ -225,7 +225,52 @@ vga: serial0
 
 ---
 
-### 6-Qadam: Template (Shablon) holatiga o'tkazish
+### 6-Qadam: Cloud-Init foydalanuvchi, parol, SSH kalit va tarmoq parametrlarini sozlash
+
+```bash
+# 1. Cloud-Init foydalanuvchi nomi va parolini belgilash
+qm set 9000 --ciuser "sarvar"
+qm set 9000 --cipassword "Sizning_Parolingiz"
+
+# 2. Custom SSH Public Key ni qo'shish (Fayl yo'lini ko'rsatasiz yoki to'g'ridan-to'g'ri matnni yozasiz)
+qm set 9000 --sshkeys /root/.ssh/id_rsa.pub
+
+# 3. Tarmoqni sozlash (Masalan: DHCP)
+qm set 9000 --ipconfig0 ip=dhcp
+```
+
+#### ❓ Nega kerak?
+1. **Foydalanuvchi va parol (`--ciuser`, `--cipassword`):** Rasmiy Ubuntu Cloud tasvirlarida sukut bo'yicha hech qanday parol o'rnatilmagan bo'ladi (parolli kirish qulflangan). Agar foydalanuvchi va parol oldindan kiritilmasa, VM ishga tushganda uning konsoliga yoki SSH tarmog'iga login/parol bilan kirib bo'lmaydi.
+2. **SSH kalit (`--sshkeys`):** Serverga parolsiz, yuqori xavfsizlik darajasida va tezkor ulanish uchun o'zingizning ochiq SSH kalitingizni (`id_rsa.pub`) Cloud-Init orqali tizimga oldindan joylashtirish imkonini beradi.
+3. **Tarmoq konfiguratsiyasi (`--ipconfig0`):** Virtual mashina birinchi marta yoqilishi bilanoq lokal tarmoqdagi DHCP serverdan avtomatik ravishda IP manzil olishini ta'minlaydi.
+
+#### 📝 Tavsif va Parametrlar tahlili:
+- `--ciuser "sarvar"`: Cloud-Init orqali yaratiladigan standart foydalanuvchi logini (masalan, `sarvar` yoki `ubuntu`).
+- `--cipassword "Sizning_Parolingiz"`: Ushbu foydalanuvchi uchun o'rnatiladigan maxfiy parol. Proxmox uni avtomatik xeshlab Cloud-Init konfiguratsiyasiga xavfsiz yozadi.
+- `--sshkeys /root/.ssh/id_rsa.pub`: Ko'rsatilgan fayldagi SSH ochiq kalitini yangi VM ichidagi foydalanuvchining `~/.ssh/authorized_keys` fayliga yuklaydi. (Fayl yo'li o'rniga to'g'ridan-to'g'ri kalit matnini ham kiritish mumkin).
+- `--ipconfig0 ip=dhcp`: Birinchi virtual tarmoq interfeysi (`net0`) uchun IP manzil taqsimotini DHCP orqali avtomatik olish rejimiga sozlaydi. (Agar statik IP kerak bo'lsa, masalan `ip=192.168.1.50/24,gw=192.168.1.1` ko'rinishida beriladi).
+
+> [!TIP]
+> Agar Proxmox xostingizda hali SSH kalit yaratilmagan bo'lsa, uni quyidagi buyruq bilan bir necha soniyada hosil qilishingiz mumkin:
+> ```bash
+> ssh-keygen -t rsa -b 4096 -N "" -f /root/.ssh/id_rsa
+> ```
+
+#### 🔍 Tekshirish va Kutilayotgan natija:
+```bash
+qm config 9000 | grep -E "ciuser|cipassword|sshkeys|ipconfig0"
+```
+Kutilayotgan natija:
+```text
+cipassword: ...
+ciuser: sarvar
+ipconfig0: ip=dhcp
+sshkeys: ssh-rsa%20AAAAB3Nza... (yoki kalitingiz)
+```
+
+---
+
+### 7-Qadam: Template (Shablon) holatiga o'tkazish
 
 ```bash
 qm template 9000
