@@ -82,6 +82,7 @@ Natijada siz kodni ishga tushirganingizdan 30 soniya o'tib, to'liq tayyor server
 Ushbu mavzu bo'yicha har bir buyruq va texnologiyaning chuqur tahlili quyidagi maxsus ma'ruzalarda yoritilgan:
 - 📄 **[Lecture 03-A: Minimal Cloud Image Template Nazariyasi](./01-cloud-init-minimal-template.md)** — Rasmiy Canonical tasviri, SCSI/VirtIO drayverlari, Serial konsol va buyruqlar tahlili.
 - 📄 **[Lecture 03-B: Custom Golden Image & virt-customize Nazariyasi](./02-cloud-init-custom-template.md)** — Offline disk tahrirlash, QEMU Guest Agent integratsiyasi, Toshkent vaqti va buyruqlar tahlili.
+- 📄 **[Lecture 03-C: Custom ISO'dan Template Yaratish Nazariyasi](./03-custom-iso-template.md)** — Subiquity Cloud-Init blokirovkasi, Machine-ID nollash, QEMU Guest Agent arxitekturasi va Proxmox GUI sozlamalari.
 
 ---
 

@@ -31,9 +31,10 @@ Terraform VM yaratishdan oldin Proxmoxda tayanch shablon bo'lishi shart. Siz quy
 | :--- | :--- | :---: | :--- | :---: |
 | **Lab 03-A** | **Minimal Rasmiy Tasvir** | `9000` | Sof Canonical Ubuntu 24.04 tasviri, qo'shimcha paketlarsiz | 📖 **[Lab 03-A Qo'llanmasi](./01-cloud-init-minimal-template.md)** |
 | **Lab 03-B** | **Custom Template (`virt-customize`)** | `9100` | **Tavsiya etiladi!** `qemu-guest-agent`, `curl`, `htop` va Toshkent vaqti kiritilgan | 🚀 **[Lab 03-B Qo'llanmasi](./02-cloud-init-custom-template.md)** |
+| **Lab 03-C** | **Custom ISO'dan Template (0 dan)** | `9000` / `9200` | Oddiy Ubuntu Server ISO o'rnatib, Cloud-Init va QEMU Agent bilan to'liq tozalab shablon qilish | 🛠 **[Lab 03-C Qo'llanmasi](./03-custom-iso-template.md)** |
 
 > [!TIP]
-> Agar shoshilinch bo'lsa yoki eng barqaror natija kerak bo'lsa, **[Lab 03-B (Custom Template)](./02-cloud-init-custom-template.md)** orqali 9100-shablonni yaratishni tavsiya qilamiz. U orqali yaratilgan VMlar Terraform bilan 100% integratsiyada ishlaydi.
+> Agar tezkor va avtomatlashgan natija kerak bo'lsa **[Lab 03-B (virt-customize)](./02-cloud-init-custom-template.md)**, agar o'zingizning shaxsiy ISO tasviringizdan noldan shablon yasamoqchi bo'lsangiz **[Lab 03-C (Custom ISO)](./03-custom-iso-template.md)** qo'llanmasidan foydalaning.
 
 
 ---
